@@ -1,2 +1,2 @@
 jsLoans :- \select_{cname = 'John Smith'} (borrower) \join_{lno = no} loan;
-\rename_{borrowedAmount} (\aggr_{sum(amount)} (jsLoans));
+\rename_{borrowedAmount} (\aggr_{coalesce(sum(amount), 0)} (jsLoans));
