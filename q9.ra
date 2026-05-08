@@ -1,11 +1,7 @@
-johnLoans := \select_{lno = no and cname = 'John Smith'}(borrower \cross loan);
-johnLoanInfo := \project_{no, minCredit}(johnLoans);
-johnLoanInfo2 := \rename_{jl2: no2, minCredit2}(johnLoanInfo);
-notMax := \project_{no}(
-  \select_{minCredit < minCredit2}(
-    johnLoanInfo \cross johnLoanInfo2
+johnLoans = \select_{cname = "John Smith"} (borrower) \join_{lno = no} loan
+maxCredit = \rename_{maxCredit} (aggr_{; max(minCredit)} (johnLoans))
+\rename_{loanNo} (
+  \project_{no} (
+    \select_{minCredit = maxCredit} (johnLoans \cross maxCredit)
   )
-);
-\rename_{result: loanNo}(
-  \project_{no}(johnLoanInfo) \diff notMax
 )

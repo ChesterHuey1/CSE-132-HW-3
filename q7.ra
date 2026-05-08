@@ -1,9 +1,6 @@
-loan2 := \rename_{loan2: no2, type2, minCredit2, amount2}(loan);
-notMax := \project_{no}(
-  \select_{amount < amount2}(
-    loan \cross loan2
+maxAmt = \rename_{maxAmount} (aggr_{; max(amount)} (loan))
+\rename_{loanNo} (
+  \project_{no} (
+    \select_{amount = maxAmount} (loan \cross maxAmt)
   )
-);
-\rename_{result: loanNo}(
-  \project_{no}(loan) \diff notMax
 )

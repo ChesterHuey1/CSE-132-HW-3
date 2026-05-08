@@ -1,17 +1,3 @@
-zero := \aggr_{; count(name) -> borrowedAmount}(
-  \select_{name <> name}(customer)
-);
-
-johnLoans := \select_{lno = no and cname = 'John Smith'}(borrower \cross loan);
-
-johnTotal := \aggr_{; sum(amount) -> borrowedAmount}(johnLoans);
-
-johnHasLoans := \rename_{jhl: cname}(
-  \project_{cname}(
-    \select_{cname = 'John Smith'}(borrower)
-  )
-);
-
-zeroIfNoLoans := \project_{borrowedAmount}(zero \cross johnHasLoans);
-
-johnTotal \union (zero \diff zeroIfNoLoans)
+js = \select_{name = "John Smith"} (customer)
+jsLoans = js \lojoin_{name = cname} (borrower \join_{lno = no} \project_{no, amount} (loan))
+\rename_{borrowedAmount} (aggr_{; sum(amount)} (jsLoans))

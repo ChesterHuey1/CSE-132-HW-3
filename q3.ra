@@ -1,17 +1,11 @@
-jumbo := \rename_{jb: name}(
-  \project_{cname}(
-    \select_{lno = no and type = 'jumbo mortgage'}(
-      borrower \cross loan
-    )
+jumbo = \rename_{name} (
+  \project_{cname} (
+    borrower \join_{lno = no} (\select_{type = "jumbo mortgage"} (loan))
   )
-);
-
-student := \rename_{st: name}(
-  \project_{cname}(
-    \select_{lno = no and type = 'student'}(
-      borrower \cross loan
-    )
+)
+student = \rename_{name} (
+  \project_{cname} (
+    borrower \join_{lno = no} (\select_{type = "student"} (loan))
   )
-);
-
+)
 jumbo \intersect student
