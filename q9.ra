@@ -1,7 +1,7 @@
-johnLoans = \select_{cname = 'John Smith'} (borrower) \join_{lno = no} loan
-maxCredit = \rename_{maxCredit} (aggr_{; max(minCredit)} (johnLoans))
+johnLoans :- \select_{cname = 'John Smith'} (borrower) \join_{lno = no} loan;
+maxCredit :- \rename_{maxCredit} (\aggr_{max(minCredit)} (johnLoans));
 \rename_{loanNo} (
   \project_{no} (
     \select_{minCredit = maxCredit} (johnLoans \cross maxCredit)
   )
-)
+);

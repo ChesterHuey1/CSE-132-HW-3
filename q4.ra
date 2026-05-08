@@ -1,7 +1,5 @@
-B1 = \rename_{name1, lno} (\project_{cname, lno} (borrower))
-B2 = \rename_{name2, lno} (\project_{cname, lno} (borrower))
-\sort_{name1, name2} (
-  \project_{name1, name2} (
-    \select_{name1 < name2} (B1 \njoin B2)
-  )
-)
+B1 :- \rename_{name1, lno} (\project_{cname, lno} (borrower));
+B2 :- \rename_{name2, lno} (\project_{cname, lno} (borrower));
+\project_{name1, name2} (
+  \select_{name1 < name2} (B1 \join B2)
+);

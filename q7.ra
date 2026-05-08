@@ -1,6 +1,6 @@
-maxAmt = \rename_{maxAmount} (aggr_{; max(amount)} (loan))
+maxAmt :- \rename_{maxAmount} (\aggr_{max(amount)} (loan));
 \rename_{loanNo} (
   \project_{no} (
     \select_{amount = maxAmount} (loan \cross maxAmt)
   )
-)
+);
