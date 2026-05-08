@@ -1,0 +1,4 @@
+b1 := \rename_{b1: name1, lno1, due1}(borrower);
+b2 := \rename_{b2: name2, lno2, due2}(borrower);
+pairs := \select_{lno1 = lno2 and name1 < name2}(b1 \cross b2);
+\project_{name1, name2}(pairs)

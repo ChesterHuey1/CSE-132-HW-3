@@ -1,0 +1,11 @@
+jumbo := \project_{cname}(
+  \select_{lno = no and type = 'jumbo mortgage'}(
+    borrower \cross loan
+  )
+);
+
+highCredit := \project_{name}(
+  \select_{credit >= 750}(customer)
+);
+
+\rename_{result: name}(jumbo) \union highCredit

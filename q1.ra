@@ -1,0 +1,7 @@
+\rename_{result: name}(
+  \project_{cname}(
+    \select_{lno = no and type = 'jumbo mortgage'}(
+      borrower \cross loan
+    )
+  )
+)

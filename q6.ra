@@ -1,0 +1,7 @@
+borrowerLoans := \select_{lno = no}(borrower \cross loan);
+totals := \aggr_{cname; sum(amount) -> total}(borrowerLoans);
+\rename_{result: name}(
+  \project_{cname}(
+    \select_{total >= 13000}(totals)
+  )
+)
