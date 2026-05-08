@@ -1,3 +1,3 @@
-js = \select_{name = "John Smith"} (customer)
+js = \select_{name = 'John Smith'} (customer)
 jsLoans = js \lojoin_{name = cname} (borrower \join_{lno = no} \project_{no, amount} (loan))
 \rename_{borrowedAmount} (aggr_{; sum(amount)} (jsLoans))
