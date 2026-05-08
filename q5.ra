@@ -2,6 +2,6 @@ B1 :- \rename_{lno, c1} (\project_{lno, cname} (borrower));
 B2 :- \rename_{lno, c2} (\project_{lno, cname} (borrower));
 \rename_{loanNo} (
   \project_{lno} (
-    \select_{c1 != c2} (B1 \join B2)
+    \select_{c1 <> c2} (B1 \join B2)
   )
 );
